@@ -20,7 +20,11 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("2. Manager");
         Terminal.WriteLine("3. CEO");
     }
-
+    
+    void OnUserInput(string input)
+    {
+        print(input);
+    }
     // Update is called once per frame
     void Update()
     {
