@@ -23,7 +23,20 @@ public class Hacker : MonoBehaviour
     
     void OnUserInput(string input)
     {
-        print(input);
+        if(input == "1")
+        {
+            print("You choose level 1");
+        } else if(input == "hackerman")
+        {
+            print("You won!!!!");
+        }else if(input == "menu")
+        {
+            ShowMainMenu("Why coming to the menu from the menu");
+        }
+        else
+        {
+            print("You have taken a wrong path");
+        }
     }
     // Update is called once per frame
     void Update()
