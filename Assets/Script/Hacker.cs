@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
+    //Game State
+    int level;
     // Start is called before the first frame update
 
     void Start()
@@ -25,8 +27,14 @@ public class Hacker : MonoBehaviour
     {
         if(input == "1")
         {
-            print("You choose level 1");
-        } else if(input == "hackerman")
+            level = 1;
+            StartGame();
+        }else if (input == "2")
+        {
+            level = 2;
+            StartGame();
+        }
+        else if(input == "hackerman")
         {
             print("You won!!!!");
         }else if(input == "menu")
@@ -37,6 +45,14 @@ public class Hacker : MonoBehaviour
         {
             print("You have taken a wrong path");
         }
+    }
+
+    void StartGame()
+    {
+        Terminal.ClearScreen();
+        Terminal.WriteLine("You choose level " + level);
+        
+
     }
     // Update is called once per frame
     void Update()
