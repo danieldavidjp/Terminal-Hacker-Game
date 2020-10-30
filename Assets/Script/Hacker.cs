@@ -6,7 +6,7 @@ public class Hacker : MonoBehaviour
 {
     //Game State
     int level;
-    enum GameState {MainMenu, Password, Win};
+    enum GameState { MainMenu, Password, Win };
     GameState currentState;
     // Start is called before the first frame update
 
@@ -15,30 +15,30 @@ public class Hacker : MonoBehaviour
         ShowMainMenu("Hello There");
     }
 
-        if(input == "1")
+    void RunMainMenu(string input)
+    {
+        if (input == "1")
         {
             level = 1;
             StartGame();
-        }else if (input == "2")
+        }
+        else if (input == "2")
         {
             level = 2;
             StartGame();
         }
-        else if(input == "hackerman")
+        else if (input == "hackerman")
         {
             print("You won!!!!");
-            currentState = Winning;
-        }else if(input == "menu")
-        {
-            ShowMainMenu("Why coming to the menu from the menu");
+            currentState = GameState.Win;
         }
         else
         {
             print("You have taken a wrong path");
         }
     }
-    
-    void ShowMainMenu(string greetings) 
+
+    void ShowMainMenu(string greetings)
     {
         Terminal.ClearScreen();
         Terminal.WriteLine(greetings);
@@ -46,22 +46,32 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("1. Secretary");
         Terminal.WriteLine("2. Manager");
         Terminal.WriteLine("3. CEO");
-        currentState = MainMenu;
+        currentState = GameState.MainMenu;
     }
-    
+
     void OnUserInput(string input)
     {
+        if (input == "menu")
+        {
+            ShowMainMenu("Why coming to the menu from the menu");
+        }
+        else if (currentState == GameState.MainMenu)
+        {
+            RunMainMenu(input);
+
+        }
+    }
 
     void StartGame()
     {
         Terminal.ClearScreen();
         Terminal.WriteLine("You choose level " + level);
-        currentState = Password;
+        currentState = GameState.Password;
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 }
