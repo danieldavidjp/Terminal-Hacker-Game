@@ -9,7 +9,7 @@ public class Hacker : MonoBehaviour
     enum GameState { MainMenu, Password, Win };
     GameState currentState;
     // Start is called before the first frame update
-
+    string password;
     void Start()
     {
         ShowMainMenu("Hello There");
@@ -20,12 +20,14 @@ public class Hacker : MonoBehaviour
         if (input == "1")
         {
             level = 1;
-            StartGame();
+            StartGame(input);
+            password = "project001";
         }
         else if (input == "2")
         {
             level = 2;
-            StartGame();
+            StartGame(input);
+            password = "projecteva001";
         }
         else if (input == "hackerman")
         {
@@ -59,14 +61,33 @@ public class Hacker : MonoBehaviour
         {
             RunMainMenu(input);
 
+        }else if(currentState == GameState.Password)
+        {
+            CheckPassword(input);
         }
     }
 
-    void StartGame()
+    void StartGame(string input)
     {
         Terminal.ClearScreen();
         Terminal.WriteLine("You choose level " + level);
+        Terminal.WriteLine("Enter your Password");
         currentState = GameState.Password;
+    }
+
+    void CheckPassword(string input)
+    {
+        if (input == password)
+        {
+
+            Terminal.ClearScreen();
+            Terminal.WriteLine("Welcome Dr. Manhatann");
+        }
+        else
+        {
+            Terminal.ClearScreen();
+            Terminal.WriteLine("Intruder Alert");
+        }
     }
     // Update is called once per frame
     void Update()
